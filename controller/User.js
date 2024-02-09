@@ -20,7 +20,11 @@ export const registration = async (req, res) => {
         message: "Please fill all the details",
       });
     }
-    
+
+     return res.status(400).json({
+        success: false,
+        message: "working",
+      });
     // check if email is exist
     const isEmailExist = await User.findOne({ email });
     
@@ -38,10 +42,7 @@ export const registration = async (req, res) => {
     //designation type convert it into lowercase()
     const lowercaseDesignationType = designationType.toLowerCase();
 
-     return res.status(400).json({
-        success: false,
-        message: "up the db",
-      });
+    
   
     // create entry on db
     const user = await User.create({
@@ -58,7 +59,7 @@ export const registration = async (req, res) => {
   } catch (error) {
     return res.status(500).json({
         success:false,
-        message: error
+        message: "hello dear"  
     })
   }
 };
