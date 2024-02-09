@@ -1,10 +1,15 @@
 import mongoose from "mongoose";
 
-export const connectDB = ()=>{
-    mongoose
-    .connect(process.env.MONGODB_URL, {
+const connectDB = async () => {
+  try {
+    await mongoose.connect(process.env.MONGODB_URL, {
       dbName: "employee_crm",
-    })
-    .then(() => console.log("Employee CRM Database Connected"))
-    .catch((e) => console.log(e));
-}
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log("Employee CRM Database Connected");
+  } catch (error) {
+    console.error('MongoDB Connection Error:', error);
+    process.exit(1);
+  }
+};
