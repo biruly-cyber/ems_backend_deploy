@@ -21,10 +21,7 @@ export const registration = async (req, res) => {
       });
     }
 
-     return res.status(400).json({
-        success: false,
-        message: "working",
-      });
+   
     // check if email is exist
     const isEmailExist = await User.findOne({ email });
     
@@ -34,7 +31,10 @@ export const registration = async (req, res) => {
         message: "Email already exist",
       });
     }
-    
+      return res.status(400).json({
+        success: false,
+        message: "working",
+      });
     //encrypt password
     const hashPassword = await bcrypt.hash(password, 10);
 
