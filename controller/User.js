@@ -11,7 +11,7 @@ export const registration = async (req, res) => {
   // fetch all data from request body
   const { name, email, password, designation, designationType } = req.body;
 
-  
+ 
   try {
     // validation
     if (!name || !email || !password || !designation || !designationType) {
@@ -20,7 +20,8 @@ export const registration = async (req, res) => {
         message: "Please fill all the details",
       });
     }
-    
+
+   
     // check if email is exist
     const isEmailExist = await User.findOne({ email });
     
@@ -30,14 +31,16 @@ export const registration = async (req, res) => {
         message: "Email already exist",
       });
     }
-    
+     
     //encrypt password
     const hashPassword = await bcrypt.hash(password, 10);
 
 
     //designation type convert it into lowercase()
     const lowercaseDesignationType = designationType.toLowerCase();
+
     
+  
     // create entry on db
     const user = await User.create({
       name,
@@ -53,7 +56,7 @@ export const registration = async (req, res) => {
   } catch (error) {
     return res.status(500).json({
         success:false,
-        message: error
+        message: "hello dear"  
     })
   }
 };
