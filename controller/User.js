@@ -11,11 +11,7 @@ export const registration = async (req, res) => {
   // fetch all data from request body
   const { name, email, password, designation, designationType } = req.body;
 
-  return res.status(400).json({
-        success: false,
-        message: "Please fill all the details",
-      });
-  
+ 
   try {
     // validation
     if (!name || !email || !password || !designation || !designationType) {
@@ -41,7 +37,12 @@ export const registration = async (req, res) => {
 
     //designation type convert it into lowercase()
     const lowercaseDesignationType = designationType.toLowerCase();
-    
+
+     return res.status(400).json({
+        success: false,
+        message: "up the db",
+      });
+  
     // create entry on db
     const user = await User.create({
       name,
