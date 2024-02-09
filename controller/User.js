@@ -11,6 +11,10 @@ export const registration = async (req, res) => {
   // fetch all data from request body
   const { name, email, password, designation, designationType } = req.body;
 
+  return res.status(400).json({
+        success: false,
+        message: "Please fill all the details",
+      });
   
   try {
     // validation
